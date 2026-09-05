@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { site, about, education, experience, skills, fieldwork, presentations, awards } from '../siteData';
 import { getCollection } from 'astro:content';
+import Helix from '../components/Helix.astro';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -22,6 +23,7 @@ const social = [
 
 <Base>
   <section class="hero">
+    <Helix />
     <div class="wrap hero-grid">
       <img class="hero-photo" src="/profile.jpg" alt={site.name} width="150" height="150" />
       <div class="hero-text">
@@ -81,14 +83,14 @@ const social = [
 
   <section>
     <div class="wrap">
-      <h2>About</h2>
+      <h2 data-idx="01">About</h2>
       <p set:html={about.trim().replace(/\n/g, ' ')} />
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <h2>Education</h2>
+      <h2 data-idx="02">Education</h2>
       {
         education.map((e) => (
           <div class="entry">
@@ -104,7 +106,7 @@ const social = [
 
   <section>
     <div class="wrap">
-      <h2>Experience</h2>
+      <h2 data-idx="03">Experience</h2>
       {
         experience.map((e) => (
           <div class="entry">
@@ -120,7 +122,7 @@ const social = [
 
   <section>
     <div class="wrap">
-      <h2>Fieldwork &amp; research experience</h2>
+      <h2 data-idx="04">Fieldwork &amp; research experience</h2>
       {
         fieldwork.map((f) => (
           <div class="entry">
@@ -135,7 +137,7 @@ const social = [
 
   <section>
     <div class="wrap">
-      <h2>Technical skills</h2>
+      <h2 data-idx="05">Technical skills</h2>
       <div class="skills-grid">
         {
           skills.map((s) => (
@@ -153,7 +155,7 @@ const social = [
 
   <section>
     <div class="wrap">
-      <h2>Conference presentations</h2>
+      <h2 data-idx="06">Conference presentations</h2>
       {
         presentations.map((p) => (
           <div class="entry">
@@ -169,7 +171,7 @@ const social = [
 
   <section>
     <div class="wrap">
-      <h2>Awards &amp; scholarships</h2>
+      <h2 data-idx="07">Awards &amp; scholarships</h2>
       {
         awards.map((a) => (
           <div class="entry">
@@ -184,7 +186,7 @@ const social = [
 
   <section>
     <div class="wrap">
-      <h2>From the blog</h2>
+      <h2 data-idx="08">From the blog</h2>
       {
         posts.map((post) => (
           <article class="post">

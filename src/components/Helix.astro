@@ -1,0 +1,36 @@
+---
+// Subtle double-helix motif for the hero. Purely decorative.
+const H = 600;
+const rungs = Array.from({ length: 13 }).map((_, i) => {
+  const y = i * 48 + 12;
+  const phase = (i / 13) * Math.PI * 2;
+  const x1 = 60 + Math.sin(phase) * 42;
+  const x2 = 60 - Math.sin(phase) * 42;
+  const w = Math.abs(Math.cos(phase)) * 0.9 + 0.4;
+  const op = 0.5 + Math.abs(Math.cos(phase)) * 0.5;
+  return { y, x1, x2, w, op };
+});
+
+function strand(sign) {
+  const pts = [];
+  for (let i = 0; i <= 60; i++) {
+    const y = i * 10;
+    const x = 60 + sign * Math.sin((y / H) * Math.PI * 2 * 3) * 42;
+    pts.push((i === 0 ? 'M' : 'L') + x.toFixed(1) + ' ' + y);
+  }
+  return pts.join(' ');
+}
+const strandA = strand(1);
+const strandB = strand(-1);
+---
+<svg class="hero-helix" viewBox="0 0 120 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  {rungs.map((r) => (
+    <>
+      <line x1={r.x1} y1={r.y} x2={r.x2} y2={r.y} stroke="currentColor" stroke-width={r.w} opacity={r.op} />
+      <circle cx={r.x1} cy={r.y} r="3.2" fill="currentColor" />
+      <circle cx={r.x2} cy={r.y} r="3.2" fill="currentColor" />
+    </>
+  ))}
+  <path d={strandA} stroke="currentColor" stroke-width="1.5" opacity="0.9" />
+  <path d={strandB} stroke="currentColor" stroke-width="1.5" opacity="0.9" />
+</svg>
