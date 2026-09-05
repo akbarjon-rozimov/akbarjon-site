@@ -237,3 +237,24 @@ section { padding: 2.6rem 0; }
   .entry { grid-template-columns: 1fr; }
   .entry .period { grid-row: 1; }
 }
+
+/* ---- Hero photo ---- */
+.hero-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.8rem;
+}
+.hero-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.hero-text { min-width: 0; }
+
+@media (max-width: 560px) {
+  .hero-grid { flex-direction: column; gap: 1.1rem; }
+  .hero-photo { width: 120px; height: 120px; }
+}

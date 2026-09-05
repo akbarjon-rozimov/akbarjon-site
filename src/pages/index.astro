@@ -22,7 +22,9 @@ const social = [
 
 <Base>
   <section class="hero">
-    <div class="wrap">
+    <div class="wrap hero-grid">
+      <img class="hero-photo" src="/profile.jpg" alt={site.name} width="150" height="150" />
+      <div class="hero-text">
       <h1>{site.name}</h1>
       <p class="role">{site.role}</p>
       <p class="tagline">{site.tagline}</p>
@@ -37,6 +39,7 @@ const social = [
             ))
         }
         <a href={`mailto:${site.email}`}>Email</a>
+      </div>
       </div>
     </div>
   </section>
