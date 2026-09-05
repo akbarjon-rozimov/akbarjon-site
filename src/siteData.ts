@@ -146,3 +146,50 @@ export const awards = [
     period: '2022 / 2023',
   },
 ];
+
+// ============================================================
+//  Professional / consulting experience — shown on /experience
+// ============================================================
+
+export const professionalIntro = `
+Alongside my research, I work as a biodiversity specialist and ecologist delivering
+IFC Performance Standard 6 and Equator Principles–aligned assessments for
+renewable-energy and infrastructure projects across Uzbekistan and Central Asia.
+`;
+
+export const professionalRoles = [
+  {
+    title: 'Senior Executive Ecologist',
+    org: 'Larsen & Toubro CIS FE LLC — Tashkent, Uzbekistan',
+    period: 'May 2026 – present',
+    note: 'BASH2 Gijduvan 300 MW Wind Farm and 500 kV / 1.5 km OHTL project. Lead biodiversity and ecology management across pre-construction and construction phases; deliver lender- and standard-compliant monitoring, mitigation and reporting; interface between engineering teams, consultants and national regulators.',
+  },
+  {
+    title: 'Curator of the Zoological Collection',
+    org: 'Institute of Zoology, Academy of Sciences of Uzbekistan — Tashkent',
+    period: 'Jan 2022 – Aug 2023',
+    note: 'Managed inventory, curation and digitization of the national zoological collection; delivered data analysis supporting national biodiversity and conservation reporting; provided taxonomic identification for external assessments.',
+  },
+];
+
+export const consultingProjects = [
+  { title: 'BASH2 Gijduvan 300 MW Wind Farm + 500 kV OHTL — Biodiversity Assessment', client: 'Larsen & Toubro PE · Bukhara region, Uzbekistan', year: 2026 },
+  { title: 'Nukus PV Solar Project (TT4531) — Biodiversity Assessment', client: 'Turnstone Ecology & ECO Consult · Karakalpakstan', year: 2026 },
+  { title: 'Tomarys AMEA Power Wind Farm (TT3973) — Biodiversity Assessment', client: 'GBI Consulting · Karakalpakstan', year: 2025 },
+  { title: 'Kungrat-4 500 MW Wind Farm (TT3841) — Biodiversity Assessment', client: 'GBI Consulting · Karakalpakstan', year: 2024 },
+  { title: 'Rapid Biodiversity Assessment, Western Chui Canal', client: 'JURU Ltd · Kyrgyzstan', year: 2024 },
+  { title: 'Karakalpakstan 1.5 GW Wind Farm (TT3629) — Biodiversity Assessment', client: 'GBI Consulting · Karakalpakstan', year: 2023 },
+  { title: 'Khorezm Regional Roads — Biodiversity Management Plan', client: 'JURU Ltd · Khorezm, Uzbekistan', year: 2023 },
+  { title: 'Hydro4U — Aquatic Biodiversity Assessment', client: 'TIIAME · Uzbekistan & Kyrgyzstan', year: 2023 },
+];
+
+export const professionalSkills = [
+  {
+    group: 'Biodiversity assessment',
+    items: ['Critical Habitat Assessment', 'Baseline surveys & species inventories', 'Habitat suitability evaluation'],
+  },
+  {
+    group: 'Standards & compliance',
+    items: ['IFC Performance Standard 6', 'Equator Principles', 'ESIA / ESMP inputs', 'Biodiversity Management Plans'],
+  },
+];

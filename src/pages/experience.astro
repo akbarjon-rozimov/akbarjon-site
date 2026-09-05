@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import {
+  professionalIntro,
+  professionalRoles,
+  consultingProjects,
+  professionalSkills,
+} from '../siteData';
+
+const projectsByYear = [...consultingProjects].sort((a, b) => b.year - a.year);
+---
+
+<Base
+  title="Experience"
+  description="Professional and consulting work: biodiversity assessment and ESIA for renewable-energy and infrastructure projects across Central Asia."
+>
+  <section class="hero hero-slim">
+    <div class="wrap">
+      <h1>Professional experience</h1>
+      <p class="tagline">{professionalIntro.trim()}</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 data-idx="01">Roles</h2>
+      {
+        professionalRoles.map((r) => (
+          <div class="entry">
+            <h3>{r.title}</h3>
+            <span class="period">{r.period}</span>
+            <span class="org">{r.org}</span>
+            {r.note && <span class="note">{r.note}</span>}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 data-idx="02">Consultancy — selected projects</h2>
+      {
+        projectsByYear.map((p) => (
+          <div class="entry">
+            <h3>{p.title}</h3>
+            <span class="period">{p.year}</span>
+            <span class="org">{p.client}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 data-idx="03">Applied skills</h2>
+      <div class="skills-grid">
+        {
+          professionalSkills.map((s) => (
+            <div class="skill-group">
+              <h3>{s.group}</h3>
+              <ul>
+                {s.items.map((it) => <li>{it}</li>)}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
