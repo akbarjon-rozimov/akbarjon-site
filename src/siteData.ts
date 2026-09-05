@@ -9,6 +9,9 @@ export const site = {
   tagline:
     'Evolutionary biologist and ichthyologist working on the genomics and conservation of Central Asian freshwater fishes.',
   email: 'akbarjonruzimov@gmail.com',
+  phone: '+86 182 1019 3552',            // shown with an icon in the hero
+  phoneAlt: '+998 94 114 9809',          // second number (UZ / WhatsApp); leave '' to hide
+  affiliation: 'Fish Evolution and Genomics Group, Institute of Zoology, Chinese Academy of Sciences',
   location: 'Beijing, P.R. China',
 
   // Social / academic links. Delete any you do not use.

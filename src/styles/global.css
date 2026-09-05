@@ -258,3 +258,35 @@ section { padding: 2.6rem 0; }
   .hero-grid { flex-direction: column; gap: 1.1rem; }
   .hero-photo { width: 120px; height: 120px; }
 }
+
+/* ---- Hero contact block ---- */
+.contact {
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.contact a { color: var(--ink-soft); }
+.contact a:hover { color: var(--accent); }
+.contact .ci {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.contact .alt { color: var(--ink-faint); }
