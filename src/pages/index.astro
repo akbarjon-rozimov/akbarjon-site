@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site, about, education, experience } from '../siteData';
+import { site, about, education, experience, skills, fieldwork, presentations, awards } from '../siteData';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -69,6 +69,12 @@ const social = [
         }
         <a href={`mailto:${site.email}`}>Email</a>
       </div>
+      {site.cvFile && (
+        <a class="cv-button" href={site.cvFile} target="_blank" rel="noopener">
+          <svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+          Download CV (PDF)
+        </a>
+      )}
       </div>
     </div>
   </section>
@@ -106,6 +112,70 @@ const social = [
             <span class="period">{e.period}</span>
             <span class="org">{e.org}</span>
             {e.note && <span class="note">{e.note}</span>}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Fieldwork &amp; research experience</h2>
+      {
+        fieldwork.map((f) => (
+          <div class="entry">
+            <h3>{f.title}</h3>
+            <span class="period">{f.period}</span>
+            {f.note && <span class="note">{f.note}</span>}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Technical skills</h2>
+      <div class="skills-grid">
+        {
+          skills.map((s) => (
+            <div class="skill-group">
+              <h3>{s.group}</h3>
+              <ul>
+                {s.items.map((it) => <li>{it}</li>)}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Conference presentations</h2>
+      {
+        presentations.map((p) => (
+          <div class="entry">
+            <h3>{p.title}</h3>
+            <span class="period">{p.period}</span>
+            <span class="org">{p.venue}</span>
+            {p.kind && <span class="note">{p.kind}</span>}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Awards &amp; scholarships</h2>
+      {
+        awards.map((a) => (
+          <div class="entry">
+            <h3>{a.title}</h3>
+            <span class="period">{a.period}</span>
+            <span class="org">{a.org}</span>
           </div>
         ))
       }

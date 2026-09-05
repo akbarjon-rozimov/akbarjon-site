@@ -290,3 +290,66 @@ section { padding: 2.6rem 0; }
   stroke-linejoin: round;
 }
 .contact .alt { color: var(--ink-faint); }
+
+/* ---- CV download button ---- */
+.cv-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.3rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  color: var(--accent-ink);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.cv-button:hover {
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+}
+.cv-button:hover .ci { stroke: #fff; }
+.cv-button .ci { width: 16px; height: 16px; }
+
+/* ---- Skills grid ---- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem 2rem;
+}
+.skill-group h3 {
+  color: var(--accent-ink);
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+}
+.skill-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.skill-group li {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  padding-left: 0.9rem;
+  position: relative;
+}
+.skill-group li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media (max-width: 560px) {
+  .skills-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+}

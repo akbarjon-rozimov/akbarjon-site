@@ -13,6 +13,7 @@ export const site = {
   phoneAlt: '+998 94 114 9809',          // second number (UZ / WhatsApp); leave '' to hide
   affiliation: 'Fish Evolution and Genomics Group, Institute of Zoology, Chinese Academy of Sciences',
   location: 'Beijing, P.R. China',
+  cvFile: '/Akbarjon_Rozimov_CV.pdf', // put the PDF in the public/ folder; leave '' to hide the button
 
   // Social / academic links. Delete any you do not use.
   links: {
@@ -69,5 +70,79 @@ export const experience = [
     org: 'International Union for Conservation of Nature',
     period: '2021 – present',
     note: 'Contributing to sturgeon conservation assessment and Red List work in Central Asia.',
+  },
+];
+
+// Technical skills, grouped. Edit freely.
+export const skills = [
+  {
+    group: 'Genomics',
+    items: ['Mitochondrial & chromosome-level genome assembly', 'Annotation', 'SNP calling & genotyping'],
+  },
+  {
+    group: 'Population genomics',
+    items: ['PCA, ADMIXTURE, phylogenomics', 'f3- and D-statistics', 'Gene flow analysis'],
+  },
+  {
+    group: 'Demographic & conservation',
+    items: ['Ne trajectories, divergence time', 'Inbreeding, genetic load', 'IUCN & regional Red List assessment'],
+  },
+  {
+    group: 'Software & tools',
+    items: ['GATK · PLINK · VCFtools · BCFtools', 'ADMIXTURE · Dsuite · fastsimcoal2 · PSMC', 'TreeMix · SLiM · SMC++ · Stairway Plot 2', 'Bash · R · Python · HPC workflows'],
+  },
+];
+
+// Fieldwork & research campaigns.
+export const fieldwork = [
+  {
+    title: 'Lost Syr Darya Sturgeon survey',
+    period: '2025',
+    note: 'Trammel-net and eDNA surveys across the Syr Darya basin in Uzbekistan, Kazakhstan and Kyrgyzstan; with Tennessee Aquarium and Re:wild.',
+  },
+  {
+    title: 'Sturgeon & cyprinid sampling for de novo genome assembly',
+    period: '2024',
+    note: 'Pseudoscaphirhynchus kaufmanni, Acipenser gueldenstaedtii, Schizothorax eurystomus, Gymnodiptychus dybowskii.',
+  },
+  {
+    title: 'Hydro4U fish sampling',
+    period: '2022 – 2023',
+    note: 'Kyrgyzstan and Uzbekistan, with TIIAME.',
+  },
+  {
+    title: 'Chirchik, Zeravshan, Surkhandarya & lower Amu Darya river surveys',
+    period: '2019 – 2023',
+    note: 'Partly self-funded inventories underpinning three publications.',
+  },
+];
+
+// Conference presentations.
+export const presentations = [
+  {
+    title: 'Multidimensional crisis: geographic range contraction, phenotypic degradation, genomic erosion, and cultural exploitation of the critically endangered Amu Darya shovelnose sturgeons',
+    venue: '10th International Symposium on Sturgeon — Yichang, China',
+    period: 'Oct 2025',
+    kind: 'Oral presentation',
+  },
+  {
+    title: 'Sturgeon survival and conservation challenges in the Amu Darya',
+    venue: '30th Anniversary Meeting, IUCN Sturgeon Specialist Group — Bordeaux, France',
+    period: 'Sep 2024',
+    kind: 'Invited online presentation',
+  },
+];
+
+// Awards & scholarships.
+export const awards = [
+  {
+    title: 'ANSO Scholarship for Young Talents',
+    org: 'UCAS — No. 2023ANP0152',
+    period: '2023',
+  },
+  {
+    title: 'Presidential Scholarship',
+    org: 'National University of Uzbekistan — No. 4/1',
+    period: '2022 / 2023',
   },
 ];
