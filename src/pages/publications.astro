@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const pubs = (await getCollection('publications')).sort((a, b) => {
+  if (b.data.year !== a.data.year) return b.data.year - a.data.year;
+  return a.data.order - b.data.order;
+});
+---
+
+<Base title="Publications" description="Peer-reviewed papers and preprints.">
+  <section class="hero" style="padding-bottom:1.4rem">
+    <div class="wrap">
+      <h1>Publications</h1>
+      <p class="tagline">Peer-reviewed papers, preprints, and selected work.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0.4rem">
+    <div class="wrap">
+      {
+        pubs.length === 0 ? (
+          <p style="color:var(--ink-faint)">Publications will appear here. Add one file per paper in <code>src/content/publications/</code>.</p>
+        ) : (
+          pubs.map((p) => (
+            <div class="pub">
+              <p class="pub-title">
+                {p.data.link ? (
+                  <a href={p.data.link} target="_blank" rel="noopener">{p.data.title}</a>
+                ) : (
+                  p.data.title
+                )}
+              </p>
+              <p class="pub-authors">{p.data.authors}</p>
+              <p class="pub-meta">
+                {p.data.status ? <span class="tag muted">{p.data.status}</span> : <>{p.data.venue} · {p.data.year}</>}
+                {p.data.doi && <> · doi:{p.data.doi}</>}
+              </p>
+            </div>
+          ))
+        )
+      }
+    </div>
+  </section>
+</Base>

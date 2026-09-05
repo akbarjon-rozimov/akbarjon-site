@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, about, education, experience } from '../siteData';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+const social = [
+  { key: 'googleScholar', label: 'Google Scholar' },
+  { key: 'orcid', label: 'ORCID' },
+  { key: 'researchGate', label: 'ResearchGate' },
+  { key: 'github', label: 'GitHub' },
+  { key: 'linkedin', label: 'LinkedIn' },
+  { key: 'twitter', label: 'Twitter' },
+] as const;
+---
+
+<Base>
+  <section class="hero">
+    <div class="wrap">
+      <h1>{site.name}</h1>
+      <p class="role">{site.role}</p>
+      <p class="tagline">{site.tagline}</p>
+      <div class="social">
+        {
+          social
+            .filter((s) => site.links[s.key])
+            .map((s) => (
+              <a href={site.links[s.key]} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+            ))
+        }
+        <a href={`mailto:${site.email}`}>Email</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>About</h2>
+      <p set:html={about.trim().replace(/\n/g, ' ')} />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Education</h2>
+      {
+        education.map((e) => (
+          <div class="entry">
+            <h3>{e.degree}</h3>
+            <span class="period">{e.period}</span>
+            <span class="org">{e.institution}</span>
+            {e.note && <span class="note">{e.note}</span>}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Experience</h2>
+      {
+        experience.map((e) => (
+          <div class="entry">
+            <h3>{e.title}</h3>
+            <span class="period">{e.period}</span>
+            <span class="org">{e.org}</span>
+            {e.note && <span class="note">{e.note}</span>}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>From the blog</h2>
+      {
+        posts.map((post) => (
+          <article class="post">
+            <div>
+              {post.data.tags.slice(0, 2).map((t) => (
+                <span class="tag">{t}</span>
+              ))}
+            </div>
+            <h3>
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            </h3>
+            <p class="post-meta">{fmt(post.data.date)}</p>
+            <p class="excerpt">{post.data.description}</p>
+          </article>
+        ))
+      }
+      <a class="view-all" href="/blog">All posts →</a>
+    </div>
+  </section>
+</Base>
