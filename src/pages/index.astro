@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import { site, about, education, experience, skills, fieldwork, presentations, awards } from '../siteData';
 import { getCollection } from 'astro:content';
 import Helix from '../components/Helix.astro';
+import Slideshow from '../components/Slideshow.astro';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -85,6 +86,12 @@ const social = [
     <div class="wrap">
       <h2 data-idx="01">About</h2>
       <p set:html={about.trim().replace(/\n/g, ' ')} />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <Slideshow />
     </div>
   </section>
 

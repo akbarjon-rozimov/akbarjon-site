@@ -193,3 +193,17 @@ export const professionalSkills = [
     items: ['IFC Performance Standard 6', 'Equator Principles', 'ESIA / ESMP inputs', 'Biodiversity Management Plans'],
   },
 ];
+
+// ============================================================
+//  Homepage photo slideshow (fieldwork & research)
+//  Put the image files in the public/gallery/ folder, then list
+//  them here. Add or remove entries freely. Leave the array
+//  empty ([]) to hide the slideshow.
+// ============================================================
+export const gallery = [
+  { src: '/gallery/field-1.jpg', caption: 'Fieldwork on the Syr Darya basin' },
+  { src: '/gallery/field-2.jpg', caption: 'Sturgeon sampling for genome assembly' },
+  { src: '/gallery/field-3.jpg', caption: 'River survey, Central Asia' },
+  { src: '/gallery/field-4.jpg', caption: 'eDNA sampling in the field' },
+  { src: '/gallery/field-5.jpg', caption: 'In the lab' },
+];

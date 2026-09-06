@@ -1,0 +1,57 @@
+---
+// Auto-rotating slideshow. Photos come from siteData (gallery).
+import { gallery } from '../siteData';
+---
+
+{
+  gallery.length > 0 && (
+    <div class="slideshow" data-slideshow>
+      <div class="slide-track">
+        {gallery.map((photo, i) => (
+          <figure class="slide" data-slide data-active={i === 0 ? 'true' : 'false'}>
+            <img src={photo.src} alt={photo.caption} loading={i === 0 ? 'eager' : 'lazy'} />
+            {photo.caption && <figcaption>{photo.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+      <div class="slide-dots" role="tablist" aria-label="Choose slide">
+        {gallery.map((_, i) => (
+          <button
+            class="slide-dot"
+            data-dot={i}
+            data-active={i === 0 ? 'true' : 'false'}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-slideshow]');
+  if (root) {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-slide]'));
+    const dots = Array.from(root.querySelectorAll<HTMLElement>('[data-dot]'));
+    let current = 0;
+    let timer: number | undefined;
+    const DELAY = 4000;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function show(n: number) {
+      slides.forEach((s, i) => s.setAttribute('data-active', String(i === n)));
+      dots.forEach((d, i) => d.setAttribute('data-active', String(i === n)));
+      current = n;
+    }
+    function next() { show((current + 1) % slides.length); }
+    function start() { if (!reduce && slides.length > 1) timer = window.setInterval(next, DELAY); }
+    function stop() { if (timer) window.clearInterval(timer); }
+
+    dots.forEach((dot, i) =>
+      dot.addEventListener('click', () => { stop(); show(i); start(); })
+    );
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    start();
+  }
+</script>
