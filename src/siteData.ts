@@ -201,9 +201,9 @@ export const professionalSkills = [
 //  empty ([]) to hide the slideshow.
 // ============================================================
 export const gallery = [
-  { src: '/gallery/field-1.jpg', caption: 'Fieldwork on the Syr Darya basin' },
-  { src: '/gallery/field-2.jpg', caption: 'Sturgeon sampling for genome assembly' },
-  { src: '/gallery/field-3.jpg', caption: 'River survey, Central Asia' },
-  { src: '/gallery/field-4.jpg', caption: 'eDNA sampling in the field' },
-  { src: '/gallery/field-5.jpg', caption: 'In the lab' },
+  { src: '/gallery/field-1.jpg', caption: 'Sturgeon sampling & tissue extraction · March 2024' },
+  { src: '/gallery/field-2.jpg', caption: 'Snow trout sampling, Chirchik River · April 2024' },
+  { src: '/gallery/field-3.jpg', caption: 'Sculpin sampling, Ugam River · March 2025' },
+  { src: '/gallery/field-4.jpg', caption: 'Syr Darya sturgeon eDNA survey · March 2025' },
+  { src: '/gallery/field-5.jpg', caption: '10th International Symposium on Sturgeon (ISS10), Yichang, China · October 2025' },
 ];
