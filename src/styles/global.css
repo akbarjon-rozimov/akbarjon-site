@@ -340,3 +340,13 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .slide { transition: none; }
 }
+
+/* ---- Article figures ---- */
+.prose img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  margin: 1.5rem 0 0.5rem;
+  background: var(--surface);
+}
