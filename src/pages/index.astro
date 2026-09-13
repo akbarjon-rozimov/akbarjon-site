@@ -213,4 +213,73 @@ const social = [
       <a class="view-all" href="/blog">All posts →</a>
     </div>
   </section>
-</Base>
+  <section>
+    <div class="wrap">
+      <h2 data-idx="09">Contact</h2>
+      <p>
+        Have a question, a collaboration idea, or just want to get in touch? Send me
+        a message below and it'll come straight to my inbox.
+      </p>
+
+      <form id="contact-form" class="contact-form">
+        <input type="hidden" name="access_key" value="1aa31fe2-2b62-4890-8bde-ea026cc0a073" />
+        <input type="hidden" name="subject" value="New message from akbarjon-rozimov.com" />
+        <input type="hidden" name="from_name" value="akbarjon-rozimov.com" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div class="form-row">
+          <label class="form-field">
+            <span>Name</span>
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label class="form-field">
+            <span>Email</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+        </div>
+
+        <label class="form-field">
+          <span>Message</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+
+        <button type="submit" class="tool-btn" id="contact-submit">Send message</button>
+        <p class="form-status" id="contact-status" hidden></p>
+      </form>
+    </div>
+  </section>
+  </Base>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('contact-status');
+  const submitBtn = document.getElementById('contact-submit');
+
+  if (form && status && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.hidden = false;
+      status.className = 'form-status';
+      status.textContent = 'Sending…';
+      submitBtn.disabled = true;
+      try {
+        const data = new FormData(form);
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+        const json = await res.json();
+        if (json.success) {
+          status.classList.add('ok');
+          status.textContent = 'Thanks — your message has been sent. I\u2019ll get back to you soon.';
+          form.reset();
+        } else {
+          status.classList.add('err');
+          status.textContent = 'Something went wrong. Please email me directly instead.';
+        }
+      } catch {
+        status.classList.add('err');
+        status.textContent = 'Network error. Please try again or email me directly.';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
+</script>
