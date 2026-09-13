@@ -1,0 +1,171 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Tools"
+  description="Interactive bioinformatics tools: DNA and protein sequence analysis, running entirely in your browser."
+>
+  <section class="hero hero-slim">
+    <div class="wrap">
+      <h1>Tools</h1>
+      <p class="tagline">
+        Small, interactive bioinformatics tools — they run entirely in your browser,
+        nothing is uploaded anywhere.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 data-idx="01">DNA sequence toolkit</h2>
+      <p>
+        Paste a DNA sequence below to see its length, GC content, base composition,
+        reverse complement, and protein translation. Non-letter characters are
+        ignored, so FASTA headers and spaces are fine.
+      </p>
+
+      <div class="tool">
+        <label class="tool-label" for="dna-input">DNA sequence (A, T, G, C)</label>
+        <textarea
+          id="dna-input"
+          class="tool-input"
+          rows="5"
+          placeholder="e.g. ATGGCCTACGGATTACCGTAA"
+          spellcheck="false"
+        ></textarea>
+
+        <div class="tool-actions">
+          <button id="dna-sample" class="tool-btn ghost" type="button">Load sample</button>
+          <button id="dna-clear" class="tool-btn ghost" type="button">Clear</button>
+        </div>
+
+        <div id="dna-results" class="tool-results" hidden>
+          <div class="stat-row">
+            <div class="stat"><span class="stat-num" id="r-length">0</span><span class="stat-cap">bases</span></div>
+            <div class="stat"><span class="stat-num" id="r-gc">0%</span><span class="stat-cap">GC content</span></div>
+            <div class="stat"><span class="stat-num" id="r-at">0%</span><span class="stat-cap">AT content</span></div>
+          </div>
+
+          <div class="composition" id="r-composition"></div>
+
+          <div class="result-block">
+            <div class="result-head">
+              <span>Reverse complement</span>
+              <button class="copy-btn" data-copy="r-revcomp" type="button">Copy</button>
+            </div>
+            <code class="seq-out" id="r-revcomp"></code>
+          </div>
+
+          <div class="result-block">
+            <div class="result-head">
+              <span>Protein translation (frame 1)</span>
+              <button class="copy-btn" data-copy="r-protein" type="button">Copy</button>
+            </div>
+            <code class="seq-out" id="r-protein"></code>
+          </div>
+
+          <p class="tool-note" id="r-warning" hidden></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const codonTable: Record<string, string> = {
+    TTT:'F',TTC:'F',TTA:'L',TTG:'L',CTT:'L',CTC:'L',CTA:'L',CTG:'L',
+    ATT:'I',ATC:'I',ATA:'I',ATG:'M',GTT:'V',GTC:'V',GTA:'V',GTG:'V',
+    TCT:'S',TCC:'S',TCA:'S',TCG:'S',CCT:'P',CCC:'P',CCA:'P',CCG:'P',
+    ACT:'T',ACC:'T',ACA:'T',ACG:'T',GCT:'A',GCC:'A',GCA:'A',GCG:'A',
+    TAT:'Y',TAC:'Y',TAA:'*',TAG:'*',CAT:'H',CAC:'H',CAA:'Q',CAG:'Q',
+    AAT:'N',AAC:'N',AAA:'K',AAG:'K',GAT:'D',GAC:'D',GAA:'E',GAG:'E',
+    TGT:'C',TGC:'C',TGA:'*',TGG:'W',CGT:'R',CGC:'R',CGA:'R',CGG:'R',
+    AGT:'S',AGC:'S',AGA:'R',AGG:'R',GGT:'G',GGC:'G',GGA:'G',GGG:'G',
+  };
+  const complement: Record<string, string> = { A:'T', T:'A', G:'C', C:'G' };
+
+  const input = document.getElementById('dna-input') as HTMLTextAreaElement;
+  const results = document.getElementById('dna-results') as HTMLElement;
+  const warning = document.getElementById('r-warning') as HTMLElement;
+
+  function clean(raw: string) {
+    return raw.toUpperCase().replace(/[^A-Z]/g, '');
+  }
+
+  function analyze() {
+    const raw = input.value;
+    const seq = clean(raw);
+
+    if (seq.length === 0) { results.hidden = true; return; }
+    results.hidden = false;
+
+    const counts: Record<string, number> = { A:0, T:0, G:0, C:0, other:0 };
+    for (const ch of seq) {
+      if (ch in counts) counts[ch]++; else counts.other++;
+    }
+    const valid = counts.A + counts.T + counts.G + counts.C;
+    const gc = valid ? ((counts.G + counts.C) / valid) * 100 : 0;
+    const at = valid ? ((counts.A + counts.T) / valid) * 100 : 0;
+
+    (document.getElementById('r-length') as HTMLElement).textContent = String(seq.length);
+    (document.getElementById('r-gc') as HTMLElement).textContent = gc.toFixed(1) + '%';
+    (document.getElementById('r-at') as HTMLElement).textContent = at.toFixed(1) + '%';
+
+    // composition bars
+    const comp = document.getElementById('r-composition') as HTMLElement;
+    comp.innerHTML = '';
+    (['A','T','G','C'] as const).forEach((base) => {
+      const pct = seq.length ? (counts[base] / seq.length) * 100 : 0;
+      const row = document.createElement('div');
+      row.className = 'comp-row';
+      row.innerHTML = `<span class="comp-base">${base}</span>
+        <span class="comp-bar"><span class="comp-fill" style="width:${pct}%"></span></span>
+        <span class="comp-pct">${counts[base]} (${pct.toFixed(1)}%)</span>`;
+      comp.appendChild(row);
+    });
+
+    // reverse complement
+    let rc = '';
+    for (let i = seq.length - 1; i >= 0; i--) rc += complement[seq[i]] ?? 'N';
+    (document.getElementById('r-revcomp') as HTMLElement).textContent = rc;
+
+    // translation frame 1
+    let protein = '';
+    for (let i = 0; i + 3 <= seq.length; i += 3) {
+      protein += codonTable[seq.slice(i, i + 3)] ?? 'X';
+    }
+    (document.getElementById('r-protein') as HTMLElement).textContent = protein || '—';
+
+    // warning for non-ATGC
+    if (counts.other > 0) {
+      warning.hidden = false;
+      warning.textContent = `Note: ${counts.other} non-ATGC letter(s) found and treated as unknown (N / X).`;
+    } else {
+      warning.hidden = true;
+    }
+  }
+
+  input.addEventListener('input', analyze);
+
+  document.getElementById('dna-sample')?.addEventListener('click', () => {
+    input.value = 'ATGGCCTACGGATTACCGTAAGCTTGACCGGATCCTAGCATGCATTAGCCGGATCGATCGTAA';
+    analyze();
+  });
+  document.getElementById('dna-clear')?.addEventListener('click', () => {
+    input.value = ''; analyze(); input.focus();
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const id = btn.getAttribute('data-copy')!;
+      const text = document.getElementById(id)?.textContent ?? '';
+      try {
+        await navigator.clipboard.writeText(text);
+        const old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => (btn.textContent = old), 1200);
+      } catch { /* ignore */ }
+    });
+  });
+</script>
