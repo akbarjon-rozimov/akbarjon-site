@@ -193,28 +193,6 @@ const social = [
 
   <section>
     <div class="wrap">
-      <h2 data-idx="08">From the blog</h2>
-      {
-        posts.map((post) => (
-          <article class="post">
-            <div>
-              {post.data.tags.slice(0, 2).map((t) => (
-                <span class="tag">{t}</span>
-              ))}
-            </div>
-            <h3>
-              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-            </h3>
-            <p class="post-meta">{fmt(post.data.date)}</p>
-            <p class="excerpt">{post.data.description}</p>
-          </article>
-        ))
-      }
-      <a class="view-all" href="/blog">All posts →</a>
-    </div>
-  </section>
-  <section>
-    <div class="wrap">
       <h2 data-idx="09">Contact</h2>
       <p>
         Have a question, a collaboration idea, or just want to get in touch? Send me
