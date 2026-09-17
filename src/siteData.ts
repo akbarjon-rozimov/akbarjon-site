@@ -158,12 +158,7 @@ renewable-energy and infrastructure projects across Uzbekistan and Central Asia.
 `;
 
 export const professionalRoles = [
-  {
-    title: 'Senior Executive Ecologist',
-    org: 'Larsen & Toubro CIS FE LLC — Tashkent, Uzbekistan',
-    period: 'May 2026 – present',
-    note: 'BASH2 Gijduvan 300 MW Wind Farm and 500 kV / 1.5 km OHTL project. Lead biodiversity and ecology management across pre-construction and construction phases; deliver lender- and standard-compliant monitoring, mitigation and reporting; interface between engineering teams, consultants and national regulators.',
-  },
+
   {
     title: 'Curator of the Zoological Collection',
     org: 'Institute of Zoology, Academy of Sciences of Uzbekistan — Tashkent',
