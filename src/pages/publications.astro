@@ -2,10 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const pubs = (await getCollection('publications')).sort((a, b) => {
-  if (b.data.year !== a.data.year) return b.data.year - a.data.year;
-  return a.data.order - b.data.order;
-});
+const pubs = (await getCollection('publications')).sort(
+  (a, b) => a.data.order - b.data.order
+);
 ---
 
 <Base title="Publications" description="Peer-reviewed papers and preprints.">
