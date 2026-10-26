@@ -202,3 +202,13 @@ export const gallery = [
   { src: '/gallery/field-4.jpg', caption: 'Syr Darya sturgeon eDNA survey · March 2025' },
   { src: '/gallery/field-5.jpg', caption: '10th International Symposium on Sturgeon (ISS10), Yichang, China · October 2025' },
 ];
+
+// Courses & certificates.
+export const courses = [
+  { title: 'Finding Hidden Messages in DNA (Bioinformatics I)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
+  { title: 'Genome Sequencing (Bioinformatics II)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
+  { title: 'Comparing Genes, Proteins, and Genomes (Bioinformatics III)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
+  { title: 'Molecular Evolution (Bioinformatics IV)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
+  { title: 'Genomic Data Science and Clustering (Bioinformatics V)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
+  { title: 'Command Line in Linux', org: 'Coursera', period: 'Oct 2026' },
+];

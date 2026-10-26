@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site, about, education, experience, skills, fieldwork, presentations, awards } from '../siteData';
+import { site, about, education, experience, skills, fieldwork, presentations, awards, courses } from '../siteData';
 import { getCollection } from 'astro:content';
 import Helix from '../components/Helix.astro';
 import Slideshow from '../components/Slideshow.astro';
@@ -191,9 +191,25 @@ const social = [
     </div>
   </section>
 
+
   <section>
     <div class="wrap">
-      <h2 data-idx="08">Contact</h2>
+      <h2 data-idx="08">Courses &amp; certificates</h2>
+      {
+        courses.map((c) => (
+          <div class="entry">
+            <h3>{c.title}</h3>
+            <span class="period">{c.period}</span>
+            <span class="org">{c.org}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 data-idx="09">Contact</h2>
       <p>
         Have a question, a collaboration idea, or just want to get in touch? Send me
         a message below and it'll come straight to my inbox.
