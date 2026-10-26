@@ -196,9 +196,11 @@ const social = [
     <div class="wrap">
       <h2 data-idx="08">Courses &amp; certificates</h2>
       {
-        courses.map((c) => (
+                courses.map((c) => (
           <div class="entry">
-            <h3>{c.title}</h3>
+            <h3>
+              {c.link ? <a href={c.link} target="_blank" rel="noopener">{c.title} ↗</a> : c.title}
+            </h3>
             <span class="period">{c.period}</span>
             <span class="org">{c.org}</span>
           </div>

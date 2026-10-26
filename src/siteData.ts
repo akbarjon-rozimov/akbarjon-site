@@ -205,10 +205,10 @@ export const gallery = [
 
 // Courses & certificates.
 export const courses = [
-  { title: 'Finding Hidden Messages in DNA (Bioinformatics I)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
-  { title: 'Genome Sequencing (Bioinformatics II)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
-  { title: 'Comparing Genes, Proteins, and Genomes (Bioinformatics III)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
-  { title: 'Molecular Evolution (Bioinformatics IV)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
-  { title: 'Genomic Data Science and Clustering (Bioinformatics V)', org: 'UC San Diego · Coursera', period: 'Oct 2026' },
-  { title: 'Command Line in Linux', org: 'Coursera', period: 'Oct 2026' },
+  { title: 'Finding Hidden Messages in DNA (Bioinformatics I)', org: 'UC San Diego · Coursera', period: 'Oct 2026', link: 'https://www.coursera.org/account/accomplishments/certificate/N75NEJPL282U' },
+  { title: 'Genome Sequencing (Bioinformatics II)', org: 'UC San Diego · Coursera', period: 'Oct 2026', link: 'https://www.coursera.org/account/accomplishments/certificate/8F82C631WTIW' },
+  { title: 'Comparing Genes, Proteins, and Genomes (Bioinformatics III)', org: 'UC San Diego · Coursera', period: 'Oct 2026', link: 'https://www.coursera.org/account/accomplishments/certificate/CPEQRJAY8CED' },
+  { title: 'Molecular Evolution (Bioinformatics IV)', org: 'UC San Diego · Coursera', period: 'Oct 2026', link: 'https://www.coursera.org/account/accomplishments/certificate/E2CZ29A6NBKP' },
+  { title: 'Genomic Data Science and Clustering (Bioinformatics V)', org: 'UC San Diego · Coursera', period: 'Oct 2026', link: 'https://www.coursera.org/account/accomplishments/certificate/CECZ0JWNT5EW' },
+  { title: 'Command Line in Linux', org: 'Coursera', period: 'Oct 2026', link: 'https://www.coursera.org/account/accomplishments/certificate/YYYD545MGTEE' },
 ];
